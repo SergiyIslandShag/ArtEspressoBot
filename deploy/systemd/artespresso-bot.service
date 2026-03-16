@@ -1,0 +1,20 @@
+[Unit]
+Description=ArtEspresso Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/artespresso-bot/ArtEspressoBot
+EnvironmentFile=/opt/artespresso-bot/ArtEspressoBot/.env
+ExecStart=/opt/artespresso-bot/ArtEspressoBot/.venv/bin/python -m bot.main
+Restart=always
+RestartSec=3
+
+# Hardening (safe defaults)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
