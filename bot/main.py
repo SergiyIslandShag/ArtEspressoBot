@@ -17,6 +17,8 @@ async def main() -> None:
     bot = Bot(token=settings.bot_token)
     dp: Dispatcher = build_dispatcher(settings)
 
+    # Polling cannot work while a webhook is active for this token.
+    await bot.delete_webhook(drop_pending_updates=True)
     logging.getLogger(__name__).info("Bot starting polling")
     await dp.start_polling(bot)
 
